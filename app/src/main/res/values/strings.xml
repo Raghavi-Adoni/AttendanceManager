@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">AttendanceManager</string>
+    <string name="subject_total_lectures">TotalLectures</string>
+</resources>
