@@ -1,15 +1,13 @@
 package com.raghavi.attendancemanager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     EditText totalLectures;
     EditText bunkedLectures;
     Button attendancebutton;
+    Button managerbutton;
 
     Float savedValue;
     SharedPreferences sharedPreferences;
@@ -30,7 +29,17 @@ public class MainActivity extends AppCompatActivity {
         totalLectures = findViewById(R.id.total_lectures);
         bunkedLectures = findViewById(R.id.bunked_lectures);
         attendancebutton = findViewById(R.id.attendance_button);
+        managerbutton = findViewById(R.id.subject_update_button);
 
+
+        managerbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent screen = new Intent(MainActivity.this, SubjectUpdate.class);
+                startActivity(screen);
+            }
+
+        });
        /* sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         savedValue = Float.valueOf(sharedPreferences.getFloat("Percentage",  0));
 
@@ -73,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void saveFloat(String key, float value) {
-       // sharedPreferences = this.getSharedPreferences(key, 0);
+        // sharedPreferences = this.getSharedPreferences(key, 0);
         //SharedPreferences.Editor editor = sharedPreferences.edit();
         SharedPreferences.Editor editor = getSharedPreferences("com.raghavi.attendancemanager", Context.MODE_PRIVATE).edit();
         editor.putFloat(key, value);
@@ -88,5 +97,6 @@ public class MainActivity extends AppCompatActivity {
         savedValue = sharedPreferences.getFloat(key, 0);
         return savedValue;
     }
+
 }
 

@@ -34,4 +34,15 @@
         android:clickable="true"
         android:onClick="setAttendanceTextView"
         />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/attendance_button"
+        android:layout_marginTop="15dp"
+        android:id="@+id/subject_update_button"
+        android:text="MANAGER"
+        android:textSize="30sp"
+
+        />
+
 </RelativeLayout>
