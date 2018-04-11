@@ -30,15 +30,18 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>  {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-holder.subjectNameTextView.setText(data[position].getSubName());
-holder.subjectTotalLecEditText.setText(data[position].getTotalLec());
-holder.subjectBunkedLecEditText.setText(data[position].getBunkedLec());
+holder.subjectNameTextView.setText(String.valueOf(data[position].getSubName()));
+holder.subjectTotalLecEditText.setText(String.valueOf(data[position].getTotalLec()));
+holder.subjectBunkedLecEditText.setText(String.valueOf(data[position].getBunkedLec()));
 holder.subjectMinPercentEditText.setText(( String.valueOf(data[position].getMinPercent())));
 
     }
 
+
+
     @Override
     public int getItemCount() {
+      // notifyItemInserted(getItemCount()+1);
         return data.length;
     }
 
