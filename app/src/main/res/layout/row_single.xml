@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/recycler_background">
 
 
     <TextView
+
         android:id="@+id/subject_name_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,6 +17,28 @@
         android:text="Sample"
         android:textSize="40dp"
         android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/increment"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/subject_totalLec_editText"
+        android:text="+"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+    <ImageButton
+        android:id="@+id/decrement"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/left"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/subject_totalLec_editText"
+        android:layout_alignBaseline= "@id/subject_totalLec_editText"
+        />
     <TextView
         android:id="@+id/subject_totalLec_text_view"
         android:layout_width="wrap_content"
@@ -37,11 +61,30 @@
         android:id="@+id/subject_bunkedLec_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:layout_below="@+id/subject_totalLec_text_view"
         android:text="Bunked Lectures :"
         android:textSize="26dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
+        />
 
+    <ImageButton
+        android:id="@+id/incrementBunks"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@+id/decrement"
+        android:layout_alignStart="@+id/decrement"
+        android:layout_alignTop="@+id/subject_bunkedLec_editText"
+        android:background="@drawable/right" />
+
+    <ImageButton
+        android:id="@+id/decrementBunks"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/left"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/subject_totalLec_editText"
+        android:layout_alignBaseline= "@id/subject_bunkedLec_editText"
         />
     <EditText
         android:id="@+id/subject_bunkedLec_editText"

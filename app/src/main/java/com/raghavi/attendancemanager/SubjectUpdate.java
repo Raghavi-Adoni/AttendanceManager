@@ -19,6 +19,7 @@ public class SubjectUpdate extends AppCompatActivity {
     subjectData[] dataset;
 
     int[] totalLecturesArray;
+    int flag;
     String[] subName;
     int[] bunkedLecturesArray;
     Float[] minPercentArray;
@@ -38,12 +39,27 @@ public class SubjectUpdate extends AppCompatActivity {
     public EditText subjectBunkedLecEditText;
     public EditText subjectMinPercentEditText;
 
+    public EditText addsubjectNameEditText;
+    public EditText addsubjectTotalLecEditText;
+    public EditText addsubjectBunkedLecEditText;
+    public Button addSubjectData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject_update);
 
         addNewSubButton = (Button) findViewById(R.id.add_sub_button);
+
+        addsubjectNameEditText = (EditText) findViewById(R.id.add_subject_name_editText);
+        addsubjectTotalLecEditText = (EditText) findViewById(R.id.add_subject_totalLec_editText);
+        addsubjectBunkedLecEditText = (EditText) findViewById(R.id.add_subject_bunkedLec_editText);
+        addSubjectData = (Button) findViewById(R.id.add_subject_data_button);
+
+        subjectNameTextView = (TextView) findViewById(R.id.subject_name_text_view);
+        subjectTotalLecEditText = (EditText) findViewById(R.id.subject_totalLec_editText);
+        subjectBunkedLecEditText = (EditText) findViewById(R.id.subject_bunkedLec_editText);
+        subjectMinPercentEditText = (EditText) findViewById(R.id.subject_minPercent_editText);
 
         minPercentList = new ArrayList<Float>();
 
@@ -68,45 +84,59 @@ public class SubjectUpdate extends AppCompatActivity {
         bunkedLecturesList.add(3);
         bunkedLecturesList.add(2);
 
+        flag = 0;
 
-      /*  minPercentArray = new Float[]{
-                55.5f,
-                60.4f,
-                22f,
-                80f
 
-        };
 
-        int l = bunkedLecturesArray.length;
-        minPercentArray = new Float[l];
-        for (int j = 0; j < l; j++) {
-            Float per;
-            //getting the number of bunked lectures
-            String bunkedLecturesString = String.valueOf(bunkedLecturesArray[j]);
-            Float numerator = Float.parseFloat(bunkedLecturesString);
+
+        addNewSubButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setContentView(R.layout.row_single);
+                flag = 1;
+
+            }
+
+
+        });
+
+        addNewSubButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (flag == 1) {
+                    // Float per;
+
+                    String subNameString = String.valueOf(addsubjectNameEditText);
+                    subNameList.add(subNameString);
+
+
+                    String bunkedLecturesString = String.valueOf(addsubjectBunkedLecEditText);
+                    bunkedLecturesList.add(Integer.parseInt(bunkedLecturesString));
+
+                    String totalLecturesString = String.valueOf(addsubjectTotalLecEditText);
+                    totalLecturesList.add(Integer.parseInt(totalLecturesString));
+
+          /*  Float numerator = Float.parseFloat(bunkedLecturesString);
             saveFloat("Numerator", (float) numerator);
 
-
             //getting the number of lectures in total
-            String totalLecturesString = String.valueOf(totalLecturesArray[j]);
+            String totalLecturesString = String.valueOf(subjectTotalLecEditText);
+            totalLecturesList.add(Integer.parseInt(totalLecturesString));
+
             Float denominator = Float.parseFloat(totalLecturesString);
             saveFloat("Denominator", (float) denominator);
 
+            per = (float) ((numerator * 100) / denominator);
+            minPercentList.add(per);
 
-            per = ((numerator * 100) / denominator);
-
-            //SaveInt("Percentage", per);
-            per = (float) ((bunkedLecturesArray[j] * 100) / totalLecturesArray[j]);
-            minPercentArray[j] = per;
-
-            saveFloat("Percentage", (float) per);
-        }*/
+            saveFloat("Percentage", (float) per);*/
+                }
+            }
+        });
 
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        final Adapter adapter = new Adapter(dataset);
-
-
+        int l = bunkedLecturesList.size();
+        dataset = new subjectData[l];
         for (int j = 0; j < bunkedLecturesList.size(); j++) {
             Float per;
             //getting the number of bunked lectures
@@ -120,10 +150,6 @@ public class SubjectUpdate extends AppCompatActivity {
             Float denominator = Float.parseFloat(totalLecturesString);
             saveFloat("Denominator", (float) denominator);
 
-
-            //  per = ((numerator * 100) / denominator);
-
-            //SaveInt("Percentage", per);
             per = (float) ((numerator * 100) / denominator);
             minPercentList.add(per);
 
@@ -132,46 +158,12 @@ public class SubjectUpdate extends AppCompatActivity {
         }
 
 
-        addNewSubButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setContentView(R.layout.row_single);
-                Float per;
-                //getting the number of bunked lectures
-                String subNameString=String.valueOf(subjectNameTextView);
-                subNameList.add(subNameString);
-
-
-                String bunkedLecturesString = String.valueOf(subjectBunkedLecEditText);
-                bunkedLecturesList.add(Integer.parseInt(bunkedLecturesString));
-
-                Float numerator = Float.parseFloat(bunkedLecturesString);
-                saveFloat("Numerator", (float) numerator);
-
-                //getting the number of lectures in total
-                String totalLecturesString = String.valueOf(subjectTotalLecEditText);
-                totalLecturesList.add(Integer.parseInt(totalLecturesString));
-
-                Float denominator = Float.parseFloat(totalLecturesString);
-                saveFloat("Denominator", (float) denominator);
-
-                per = (float) ((numerator * 100) / denominator);
-                minPercentList.add(per);
-
-                saveFloat("Percentage", (float) per);
-//adapter.notifyItemInserted(adapter.getItemCount()+1);
-//dataset[bunkedLecturesList.size()+1]=new subjectData(subNameString,Integer.parseInt(bunkedLecturesString),Integer.parseInt(totalLecturesString),per);
-                adapter.notifyDataSetChanged();
-            }
-
-
-
-        });
-        int l = bunkedLecturesList.size();
-         dataset =new subjectData[l];
-        for(int i = 0; i < l; i++) {
+        for (int i = 0; i < l; i++) {
             dataset[i] = new subjectData(subNameList.get(i), totalLecturesList.get(i), bunkedLecturesList.get(i), minPercentList.get(i));
         }
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        final Adapter adapter = new Adapter(dataset);
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(SubjectUpdate.this));
@@ -180,8 +172,6 @@ public class SubjectUpdate extends AppCompatActivity {
     }
 
     public void saveFloat(String key, float value) {
-        // sharedPreferences = this.getSharedPreferences(key, 0);
-        //SharedPreferences.Editor editor = sharedPreferences.edit();
         SharedPreferences.Editor editor = getSharedPreferences("com.raghavi.attendancemanager", Context.MODE_PRIVATE).edit();
         editor.putFloat(key, value);
         editor.apply();

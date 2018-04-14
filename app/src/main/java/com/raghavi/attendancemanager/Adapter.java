@@ -41,7 +41,7 @@ holder.subjectMinPercentEditText.setText(( String.valueOf(data[position].getMinP
 
     @Override
     public int getItemCount() {
-      // notifyItemInserted(getItemCount()+1);
+//       notifyItemInserted(getItemCount()+1);
         return data.length;
     }
 
