@@ -17,6 +17,14 @@ public class subjectData {
         this.minPercent=minPercent;
     }
 
+public subjectData()
+{
+    subName = "";
+    totalLec = 0;
+    bunkedLec=0;
+    minPercent=0;
+}
+
     public String getSubName() {
 
         return subName;
